@@ -8,16 +8,6 @@ const mapDBToModel = ({
   year,
 });
 
-const mapGetSong = ({
-  id,
-  title,
-  performer,
-}) => ({
-  id,
-  title,
-  performer,
-});
-
 const mapGetSongById = ({
   id,
   title,
@@ -25,6 +15,7 @@ const mapGetSongById = ({
   performer,
   genre,
   duration,
+  // eslint-disable-next-line camelcase
   album_id,
 }) => ({
   id,
@@ -33,11 +24,11 @@ const mapGetSongById = ({
   performer,
   genre,
   duration,
+  // eslint-disable-next-line camelcase
   albumId: album_id,
 });
 
 module.exports = {
   mapDBToModel,
-  mapGetSong,
   mapGetSongById,
 };
