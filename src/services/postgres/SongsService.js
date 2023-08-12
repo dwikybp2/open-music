@@ -2,9 +2,8 @@ const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
 const InvariantError = require('../../exceptions/InvariantError');
 const NotFoundError = require('../../exceptions/NotFoundError');
-const { mapGetSongById } = require('../../utils');
 
-class AlbumsService {
+class SongsService {
   constructor() {
     this.pool = new Pool();
   }
@@ -54,6 +53,11 @@ class AlbumsService {
       values: val,
     };
 
+    // const query = {
+    //   text: 'SELECT id, title, performer FROM songs WHERE title ILIKE $1 AND performer ILIKE $2',
+    //   values: [`%${title}%`, `%${performer}%`],
+    // };
+
     const result = await this.pool.query(query);
 
     return result.rows;
@@ -61,7 +65,7 @@ class AlbumsService {
 
   async getSongById(id) {
     const query = {
-      text: 'SELECT * FROM songs WHERE id = $1',
+      text: 'SELECT id, title, year, performer, genre, duration, album_id as "albumId" FROM songs WHERE id = $1',
       values: [id],
     };
     const result = await this.pool.query(query);
@@ -70,7 +74,7 @@ class AlbumsService {
       throw new NotFoundError('Song tidak ditemukan');
     }
 
-    return result.rows.map(mapGetSongById)[0];
+    return result.rows[0];
   }
 
   async editSongById(id, {
@@ -100,4 +104,4 @@ class AlbumsService {
   }
 }
 
-module.exports = AlbumsService;
+module.exports = SongsService;
