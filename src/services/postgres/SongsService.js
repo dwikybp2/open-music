@@ -53,11 +53,6 @@ class SongsService {
       values: val,
     };
 
-    // const query = {
-    //   text: 'SELECT id, title, performer FROM songs WHERE title ILIKE $1 AND performer ILIKE $2',
-    //   values: [`%${title}%`, `%${performer}%`],
-    // };
-
     const result = await this.pool.query(query);
 
     return result.rows;

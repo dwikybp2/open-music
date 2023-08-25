@@ -1,14 +1,3 @@
-/* eslint-disable camelcase */
-const mapDBToModel = ({
-  id,
-  name,
-  year,
-}) => ({
-  id,
-  name,
-  year,
-});
-
 const mapGetPlaylist = ({
   id,
   name,
@@ -20,6 +9,5 @@ const mapGetPlaylist = ({
 });
 
 module.exports = {
-  mapDBToModel,
   mapGetPlaylist,
 };

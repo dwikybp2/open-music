@@ -21,12 +21,6 @@ class UsersHandler {
     });
     response.code(201);
     return response;
-    // return {
-    //     status: 'success',
-    //     data: {
-    //         userId,
-    //     },
-    // };
   }
 
   async getUserByIdHandler(request) {
